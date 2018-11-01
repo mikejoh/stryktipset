@@ -1,0 +1,3 @@
+# Stryktipset
+
+Written in Go.
