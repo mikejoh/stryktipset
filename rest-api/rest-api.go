@@ -30,7 +30,7 @@ func Convert(w http.ResponseWriter, r *http.Request) {
 	b.Full = full
 	b.Half = half
 
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
 	json.NewEncoder(w).Encode(b)
 }
@@ -44,7 +44,7 @@ func RandomizedBet(w http.ResponseWriter, r *http.Request) {
 
 	bets := stryktipset.RandomizeBet(full, half)
 
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
 	json.NewEncoder(w).Encode(bets)
 }
