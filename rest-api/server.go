@@ -49,10 +49,17 @@ func RandomizedBet(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(bets)
 }
 
-func main() {
+// Initializes the router and handler functions
+func Init() *mux.Router {
 	router := mux.NewRouter()
 	router.HandleFunc("/api/convert/{sek}", Convert).Methods("GET")
 	router.HandleFunc("/api/bet/{sek}", RandomizedBet).Methods("GET")
+
+	return router
+}
+
+func main() {
+	router := Init()
 
 	allowedOrigins := handlers.AllowedOrigins([]string{"*"})
 	allowedMethods := handlers.AllowedMethods([]string{"GET", "POST"})
