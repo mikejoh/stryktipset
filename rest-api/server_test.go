@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"strconv"
 	"testing"
 )
 
@@ -21,26 +22,42 @@ func checkResponseCode(t *testing.T, expected, actual int) {
 	}
 }
 
+type TestBet struct {
+	sek          int
+	expectedFull int
+	expectedHalf int
+}
+
+var testBets = []TestBet{
+	{2, 0, 1}, {4, 0, 2}, {8, 0, 3}, {16, 0, 4}, {48, 1, 4}, {96, 1, 5}, {144, 2, 4}, {432, 3, 4},
+}
+
 func TestGetConvertEndpoint(t *testing.T) {
-	req, _ := http.NewRequest("GET", "/api/convert/192", nil)
+	for _, tt := range testBets {
+		sek := strconv.Itoa(tt.sek)
+		expectedFullStr := strconv.Itoa(tt.expectedFull)
+		expectedHalfStr := strconv.Itoa(tt.expectedHalf)
 
-	response := executeRequest(req)
+		req, _ := http.NewRequest("GET", "/api/convert/"+sek, nil)
 
-	checkResponseCode(t, http.StatusOK, response.Code)
+		response := executeRequest(req)
 
-	var b Bet
+		checkResponseCode(t, http.StatusOK, response.Code)
 
-	json.Unmarshal(response.Body.Bytes(), &b)
+		var b Bet
 
-	if b.Sek != 192 {
-		t.Errorf("Expected amount of SEK to be '192'. Got '%v'", b.Sek)
-	}
+		json.Unmarshal(response.Body.Bytes(), &b)
 
-	if b.Full != 1 {
-		t.Errorf("Expected full covers expected to be '1'. Got '%v'", b.Full)
-	}
+		if b.Sek != tt.sek {
+			t.Errorf("Expected amount of SEK to be '"+sek+"'. Got '%v'", b.Sek)
+		}
 
-	if b.Half != 6 {
-		t.Errorf("Expected half covers expected to be '6'. Got '%v'", b.Half)
+		if b.Full != tt.expectedFull {
+			t.Errorf("Expected full covers expected to be '"+expectedFullStr+"'. Got '%v'", b.Full)
+		}
+
+		if b.Half != tt.expectedHalf {
+			t.Errorf("Expected half covers expected to be '"+expectedHalfStr+"'. Got '%v'", b.Half)
+		}
 	}
 }
