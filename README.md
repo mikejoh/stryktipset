@@ -5,7 +5,7 @@
 Stryktipset is one of the brands of the Swedish state-owned company Svenska Spel that operates in the regulated gambling market. It's a betting service where you can play on
 various football matches every Saturday.
 
-This repository contains tools and other things related to Stryktipset, i created this repository to have a project where i could test and learn Go-lang.
+This repository contains functions and other things related to Stryktipset, like randomizing some bets for you. I created this repository to have a project where i could test and learn Go-lang.
 
 At the moment this repository consists of:
 
