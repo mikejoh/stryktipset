@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/mikejoh/stryktipset.svg?style=svg)](https://circleci.com/gh/mikejoh/stryktipset)
+
 # Stryktipset
 
 Stryktipset is one of the brands of the Swedish state-owned company Svenska Spel that operates in the regulated gambling market. It's a betting service where you can play on
