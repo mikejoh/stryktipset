@@ -11,16 +11,9 @@ import (
 	"github.com/mikejoh/stryktipset"
 )
 
-// Bet type
-type Bet struct {
-	Sek  int `json:"sek"`
-	Full int `json:"full"`
-	Half int `json:"half"`
-}
-
-// Convert will convert a given amount of SEK (Swedish Crowns) to the amount of full and half covers you can bet
+// GetConvert will convert a given amount of SEK (Swedish Crowns) to the amount of full and half covers you can bet
 // Returns an JSON encoded Bet type
-func Convert(w http.ResponseWriter, r *http.Request) {
+func GetConvert(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 
 	var b Bet
@@ -35,14 +28,18 @@ func Convert(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(b)
 }
 
-// RandomizedBet returns a JSON encoded array of 13 randomized bets
-func RandomizedBet(w http.ResponseWriter, r *http.Request) {
+// GetCoupon returns a JSON encoded array of 13 randomized bets
+func GetCoupon(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 
 	sek, _ := strconv.Atoi(params["sek"])
 	full, half := stryktipset.ConvertSekToBet(sek)
 
-	bets := stryktipset.RandomizeBet(full, half)
+	c := stryktipset.NewCoupon()
+
+	c.Create(full, half)
+
+	bets := c.Bets
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
@@ -52,8 +49,8 @@ func RandomizedBet(w http.ResponseWriter, r *http.Request) {
 // Initializes the router and handler functions
 func Init() *mux.Router {
 	router := mux.NewRouter()
-	router.HandleFunc("/api/convert/{sek}", Convert).Methods("GET")
-	router.HandleFunc("/api/bet/{sek}", RandomizedBet).Methods("GET")
+	router.HandleFunc("/api/convert/{sek}", GetConvert).Methods("GET")
+	router.HandleFunc("/api/coupon/{sek}", GetCoupon).Methods("GET")
 
 	return router
 }
