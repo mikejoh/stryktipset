@@ -6,6 +6,8 @@ import (
 	"net/http/httptest"
 	"strconv"
 	"testing"
+
+	"github.com/mikejoh/stryktipset"
 )
 
 func executeRequest(req *http.Request) *httptest.ResponseRecorder {
@@ -44,20 +46,20 @@ func TestGetConvertEndpoint(t *testing.T) {
 
 		checkResponseCode(t, http.StatusOK, response.Code)
 
-		var b Bet
+		var c stryktipset.Convert
 
-		json.Unmarshal(response.Body.Bytes(), &b)
+		json.Unmarshal(response.Body.Bytes(), &c)
 
-		if b.Sek != tt.sek {
-			t.Errorf("Expected amount of SEK to be '"+sek+"'. Got '%v'", b.Sek)
+		if c.Sek != tt.sek {
+			t.Errorf("Expected amount of SEK to be '"+sek+"'. Got '%v'", c.Sek)
 		}
 
-		if b.Full != tt.expectedFull {
-			t.Errorf("Expected full covers expected to be '"+expectedFullStr+"'. Got '%v'", b.Full)
+		if c.Full != tt.expectedFull {
+			t.Errorf("Expected full covers expected to be '"+expectedFullStr+"'. Got '%v'", c.Full)
 		}
 
-		if b.Half != tt.expectedHalf {
-			t.Errorf("Expected half covers expected to be '"+expectedHalfStr+"'. Got '%v'", b.Half)
+		if c.Half != tt.expectedHalf {
+			t.Errorf("Expected half covers expected to be '"+expectedHalfStr+"'. Got '%v'", c.Half)
 		}
 	}
 }

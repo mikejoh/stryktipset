@@ -16,16 +16,16 @@ import (
 func GetConvert(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 
-	var b Bet
+	var c stryktipset.Convert
 
-	b.Sek, _ = strconv.Atoi(params["sek"])
-	full, half := stryktipset.ConvertSekToBet(b.Sek)
-	b.Full = full
-	b.Half = half
+	c.Sek, _ = strconv.Atoi(params["sek"])
+	full, half := stryktipset.ConvertSekToBet(c.Sek)
+	c.Full = full
+	c.Half = half
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
-	json.NewEncoder(w).Encode(b)
+	json.NewEncoder(w).Encode(c)
 }
 
 // GetCoupon returns a JSON encoded array of 13 randomized bets
