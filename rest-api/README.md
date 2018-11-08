@@ -2,13 +2,9 @@
 
 Serves the `stryktipset` package over an REST API.
 
-### Endpoints
-
-`/api/convert/{sek}`
-`/api/bet/{sek}`
-
-### Todo
+### Exposed endpoints
 
 ```
-[ ] Document API with Swagger or similar
+/api/convert/{sek}
+/api/coupon/{sek}
 ```
