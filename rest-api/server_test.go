@@ -24,18 +24,23 @@ func checkResponseCode(t *testing.T, expected, actual int) {
 	}
 }
 
-type TestBet struct {
-	sek          int
+var converttests = []struct {
+	sek int
 	expectedFull int
 	expectedHalf int
-}
-
-var testBets = []TestBet{
-	{2, 0, 1}, {4, 0, 2}, {8, 0, 3}, {16, 0, 4}, {48, 1, 4}, {96, 1, 5}, {144, 2, 4}, {432, 3, 4},
+}{
+	{2, 0, 1},
+	{4, 0, 2},
+	{8, 0, 3},
+	{16, 0, 4},
+	{48, 1, 4}, 
+	{96, 1, 5},
+	{144, 2, 4},
+	{432, 3, 4},
 }
 
 func TestGetConvertEndpoint(t *testing.T) {
-	for _, tt := range testBets {
+	for _, tt := range converttests {
 		sek := strconv.Itoa(tt.sek)
 		expectedFullStr := strconv.Itoa(tt.expectedFull)
 		expectedHalfStr := strconv.Itoa(tt.expectedHalf)
