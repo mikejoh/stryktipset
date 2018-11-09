@@ -25,7 +25,7 @@ func checkResponseCode(t *testing.T, expected, actual int) {
 }
 
 var converttests = []struct {
-	sek int
+	sek          int
 	expectedFull int
 	expectedHalf int
 }{
@@ -33,8 +33,9 @@ var converttests = []struct {
 	{4, 0, 2},
 	{8, 0, 3},
 	{16, 0, 4},
-	{48, 1, 4}, 
+	{48, 1, 4},
 	{96, 1, 5},
+	{192, 1, 6},
 	{144, 2, 4},
 	{432, 3, 4},
 }
