@@ -2,7 +2,13 @@
 
 Serves the `stryktipset` package through a command-line tool called `st`.
 
-### How-to
+### Compile and run
 
-1. Run `make build` to compile the binary, use `make build-linux` for x-compiling to Linux based OS:es.
-2. Run e.g. `st -sek 192` to test the commad-line tool
+Run `make build` to compile the binary, use `make build-linux` for x-compiling to Linux based OS:es. To compile the binary for Linux through Docker run: `make build-docker-linux`. See the `Makefile` for more options.
+
+Example of running (in working directory) `st`:
+```
+$> ./st -sek 192
+Full: 1
+Half: 6
+```
