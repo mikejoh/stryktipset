@@ -16,3 +16,9 @@ build:
 build-linux:
     CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o $(BINARY_UNIX) -v
 
+build-docker-linux:
+	docker run -v ${PWD}:/st -w /st -e GOOS=linux -e GOARCH=amd64 golang:latest go get -d -v && go build -v
+
+build-docker-darwin:
+	docker run -v ${PWD}:/st -w /st -e GOOS=darwin -e GOARCH=amd64 golang:latest go get -d -v && go build -v
+
