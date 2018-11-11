@@ -26,6 +26,6 @@ func TestCreateCoupon(t *testing.T) {
 	}
 
 	if gotFull != wantFull && gotHalf != wantHalf && gotSingles != wantSingles {
-		t.Errorf("CreateCoupon() got = %d full, %d half and %d singles. want %d, %d and %d", wantFull, wantHalf, gotFull, gotHalf, gotSingles, wantFull, wantHalf, wantSingles)
+		t.Errorf("CreateCoupon() got = %d full, %d half and %d singles. want %d, %d and %d", gotFull, gotHalf, gotSingles, wantFull, wantHalf, wantSingles)
 	}
 }
