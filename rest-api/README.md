@@ -7,4 +7,5 @@ Serves the `stryktipset` package over an REST API.
 ```
 /api/convert/{sek}
 /api/coupon/{sek}
+/api/coupon/{sek}?output=html
 ```
