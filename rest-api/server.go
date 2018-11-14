@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -36,14 +37,23 @@ func GetCoupon(w http.ResponseWriter, r *http.Request) {
 	full, half := stryktipset.ConvertSekToBet(sek)
 
 	c := stryktipset.NewCoupon()
-
 	c.Create(full, half)
-
 	bets := c.Bets
 
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	outputType := r.URL.Query().Get("output")
 
-	json.NewEncoder(w).Encode(bets)
+	switch outputType {
+	case "html":
+		// Respond with a HTML page
+		w.Header().Set("Content-Type", "text/html; charset=UTF-8")
+		for _, b := range bets {
+			fmt.Fprint(w, b.String()+"<br>")
+		}
+	default:
+		// Always respond with the bets JSON encoded
+		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+		json.NewEncoder(w).Encode(bets)
+	}
 }
 
 // Initializes the router and handler functions
