@@ -11,14 +11,15 @@ type Coupon struct {
 }
 
 // NewCoupon is a constructor for creating a new Coupon
-func NewCoupon() *Coupon {
+func NewCoupon(full, half int) *Coupon {
 	var c Coupon
 	c.Bets = make(map[int]Bet)
+	c.create(full, half)
 	return &c
 }
 
 // Create fills the coupon with random bets
-func (c *Coupon) Create(full, half int) {
+func (c *Coupon) create(full, half int) {
 	numMatches := 13
 
 	rand.Seed(time.Now().UnixNano())
