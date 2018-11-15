@@ -14,13 +14,11 @@ var coupontests = []struct {
 
 func TestCreateCoupon(t *testing.T) {
 	for _, tt := range coupontests {
-		c := NewCoupon()
+		c := NewCoupon(tt.wantFull, tt.wantHalf)
 
 		gotFull := 0
 		gotHalf := 0
 		gotSingles := 0
-
-		c.Create(tt.wantFull, tt.wantHalf)
 
 		for _, b := range c.Bets {
 			if len(b.String()) == 3 {
