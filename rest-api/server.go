@@ -36,8 +36,7 @@ func GetCoupon(w http.ResponseWriter, r *http.Request) {
 	sek, _ := strconv.Atoi(params["sek"])
 	full, half := stryktipset.ConvertSekToBet(sek)
 
-	c := stryktipset.NewCoupon()
-	c.Create(full, half)
+	c := stryktipset.NewCoupon(full, half)
 	bets := c.Bets
 
 	outputType := r.URL.Query().Get("output")
