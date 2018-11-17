@@ -10,5 +10,6 @@ This repository contains functions and other things related to Stryktipset, like
 At the moment this repository consists of:
 
 * The `stryktipset` package that exports a number of functions that can be used when playing Stryktipset
-* A REST API that serves the `stryktipset` package
-* A command line tool called `st` that implements the `stryktipset` package
+* Example on how to run a REST API that serves the `stryktipset` package
+* Example on how to run a REST API serverless via AWS Lambda function and AWS API Gateway
+* The command line tool called `st` that uses the `stryktipset` package
