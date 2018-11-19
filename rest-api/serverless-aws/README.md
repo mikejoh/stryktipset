@@ -80,7 +80,14 @@ aws apigateway put-integration --rest-api-id $REST_API_ID --resource-id $CONVERT
 aws lambda add-permission --function-name stryktipset --statement-id stryktipset2018 --action lambda:InvokeFunction --principal apigateway.amazonaws.com --source-arn arn:aws:execute-api:eu-west-1:ACCOUNT_ID:${REST_API_ID}/*/*/*
 ```
 
-10. We should be done by now, let's use `awscli` to run a test invokation
+10. Deploy the API, to be able to access it externally. Use any name you want as the `--stage-name`
+
+```
+aws apigateway create-deployment --rest-api-id $REST_API_ID \
+--stage-name staging
+```
+
+11. We should be done by now, let's use `awscli` to run a test invokation
 
 ```
 aws apigateway test-invoke-method --rest-api-id $REST_API_ID --resource-id $CONVERT_RESOURCE_ID --http-method "GET" --path-with-query-string "/convert?sek=192"
