@@ -8,11 +8,13 @@ https://REST_API_ID.execute-api.eu-west-1.amazonaws.com/staging/convert?sek=192
 {"sek":192,"full":1,"half":6}
 ```
 
+Heavily inspired by [this](https://www.alexedwards.net/blog/serverless-api-with-go-and-aws-lambda) blog post!
+
 ## Prerequisites
 
 * Create a new IAM user, for the purpose of just testing Lambda and API gateway i attached the `AdministratorAccess` policy to the user. Not to be used in production!
 
-## Use terraform step-by-step guide
+## Terraform step-by-step guide
 
 Coming soon!
 
