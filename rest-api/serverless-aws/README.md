@@ -26,7 +26,7 @@ _At the moment each step will be copy-pasted into the CLI you're using. Not grea
 
 _If you for want to change the Lambda function for any reason, use this command to re-upload the function code: `aws lambda update-function-code --function-name stryktipset --zip-file fileb://${ZIP_PATH}`_
 
-1. Run `make aws-lambda-build' to cross compile for Linux (required to be used by Lambda) and zip the resulting binary. This zip-file will be used when creating the Lambda function.
+1. Run `make aws-lambda-build` to cross compile for Linux (required to be used by Lambda) and zip up the resulting binary. This zip-file will be used when creating the Lambda function.
 
 2. Create the IAM role (permissions) that the Lambda function will use when running. the trust policy document will allow Lambda services to assume the `lambda-stryktipset-executor` role:
 ```
