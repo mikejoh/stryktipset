@@ -3,3 +3,4 @@ todo.md
 stryktipset
 stryktipset.zip
 *tfstate*
+.terraform/
