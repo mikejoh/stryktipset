@@ -40,7 +40,3 @@ resource "aws_api_gateway_deployment" "stryktipset" {
     rest_api_id = "${aws_api_gateway_rest_api.stryktipset.id}"
     stage_name  = "staging"
 }
-
-output "base_url" {
-  value = "${aws_api_gateway_deployment.stryktipset.invoke_url}"
-}
