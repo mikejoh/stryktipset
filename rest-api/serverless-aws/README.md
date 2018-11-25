@@ -16,7 +16,7 @@ Heavily inspired by [this](https://www.alexedwards.net/blog/serverless-api-with-
 
 ## Terraform step-by-step guide
 
-Coming soon!
+See this [page](https://github.com/mikejoh/stryktipset/tree/master/rest-api/serverless-aws).
 
 ## Semi-manual step-by-step guide
 
